@@ -54,12 +54,32 @@ def sign_up(clnt_sock):
         imfor = clnt_sock.recv(BUF_SIZE) # password/name/email
         imfor = imfor.split('/')  # 구분자 /로 잘라서 리스트 생성
         imfor[0] = imfor[0].decode("UTF–8")    # imfor[0]은 password라서 디코딩
-        user_data.append(imfor)       
+        user_data.append(imfor)       # user_data 리스트에 추가
         print(user_data)
-        query = "INSERT INTO Users(id, password, name, email) VALUES(?, ?, ?, ?)"
-        c.executemany(query, user_data)
+        query = "INSERT INTO Users(id, password, name, email) VALUES(?, ?, ?, ?)" 
+        c.executemany(query, user_data) # DB에 user_data 추가
         con.commit()
 
+
+def login(clnt_sock):
+    
+    while True:
+        imfor = clnt_sock.recv(BUF_SIZE)  # id/password
+        imfor = imfor.split('/')          
+        for i in range(2):         
+            imfor[i] = imfor[i].decode("UTF–8")   
+        user_id = imfor[0]     
+        c.execute("SELECT password FROM Users where id=?", user_id) # DB에서 id 같은 password 컬럼 선택
+        user_pw = c.fetchone()             # 한 행 추출
+        if imfor[1] == user_pw:
+            #로그인성공 시그널
+            print("login sucess")
+            break
+        else:
+            #로그인실패 시그널
+            print("login failure")
+            continue
+        
     
 
 def delete_imfor(clnt_sock):
