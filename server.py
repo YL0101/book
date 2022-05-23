@@ -52,10 +52,11 @@ def sign_up(clnt_sock):
         user_data.append(imfor)
         print(user_data)
         imfor = clnt_sock.recv(BUF_SIZE) # password/name/email
-
-        user_data.append(imfor.split('/'))       # 구분자 /로 잘라서 리스트 생성
+        imfor = imfor.split('/')  # 구분자 /로 잘라서 리스트 생성
+        imfor[0] = imfor[0].decode("UTF–8")    # imfor[0]은 password라서 디코딩
+        user_data.append(imfor)       
         print(user_data)
-        query = "insert into Users(id, password, name, email) values(?, ?, ?, ?)"
+        query = "INSERT INTO Users(id, password, name, email) VALUES(?, ?, ?, ?)"
         c.executemany(query, user_data)
         con.commit()
 
