@@ -1,3 +1,5 @@
+from ast import Continue
+from asyncio.windows_events import NULL
 import socket
 import threading
 import sqlite3
@@ -61,8 +63,8 @@ def sign_up(clnt_sock):
         con.commit()
 
 
+
 def login(clnt_sock):
-    
     while True:
         imfor = clnt_sock.recv(BUF_SIZE)  # id/password
         imfor = imfor.split('/')          
@@ -71,16 +73,56 @@ def login(clnt_sock):
         user_id = imfor[0]     
         c.execute("SELECT password FROM Users where id=?", user_id) # DB에서 id 같은 password 컬럼 선택
         user_pw = c.fetchone()             # 한 행 추출
+
+        '''없는 id이면 null?
+        if user_pw == NULL:
+            continue'''
+     
         if imfor[1] == user_pw:
             #로그인성공 시그널
+            #clnt_sock.send('OK'.encode())    
             print("login sucess")
             break
         else:
             #로그인실패 시그널
+            #clnt_sock.send('NO'.encode())    
             print("login failure")
             continue
         
-    
+def find_id(clnt_sock):
+    imfor = clnt_sock.recv(BUF_SIZE) # name/email
+    imfor = imfor.split('/')
+    user_name = imfor[0]
+    c.execute("SELECT id, email FROM Users where name=?", user_name)
+    row = c.fetchone()
+    user_id = row[0]
+    user_email = row[1]
+    if imfor[1] == user_email:
+        #id 보내기(메일로?)
+        #clnt_sock.send(user_id.encode()) 
+    else:
+        #정보일치x
+
+
+def find_pw(clnt_sock):
+    imfor = clnt_sock.recv(BUF_SIZE) #id/name/email
+    imfor = imfor.split('/')
+    user_id = imfor[0]
+    c.execute("SELECT password, name, email FROM Users where id=?", user_id)
+    row = c.fetchone()
+    user_name = imfor[1]
+    user_email = imfor[2]
+    if imfor[1] == user_name:
+        if imfor[2] == user_email:
+            #password 보내기
+            #clnt_sock.send(user_email.encode())
+        else:
+            #정보일치x
+    else:
+        #정보일치x
+
+
+
 
 def delete_imfor(clnt_sock):
     global clnt_cnt
