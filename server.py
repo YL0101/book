@@ -55,7 +55,7 @@ def sign_up(clnt_sock):
 
         user_data.append(imfor.split('/'))       # 구분자 /로 잘라서 리스트 생성
         print(user_data)
-        query = "insert into Users values (:id, :password, :name, :email)"
+        query = "insert into Users(id, password, name, email) values(?, ?, ?, ?)"
         c.executemany(query, user_data)
         con.commit()
 
