@@ -13,8 +13,8 @@ Port = 2090
 a="3"
 b="4"
 
-#sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-#sock.connect((IP, Port))
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+sock.connect((IP, Port))
 
 class Login(QDialog):
     def __init__(self):
@@ -46,9 +46,8 @@ class reg(QDialog):
 
     def chack_id(self):
         id=self.id_Edit.text()
-        #sock.send(id.encode())
-        #ck = sock.read(BUF_SIZE)
-        ck="!OK"
+        sock.send(id.encode())
+        ck = sock.read(BUF_SIZE)
         if ck == "!OK" :
             #아이디 중복확인이 완료했을시 입력칸 잠금해제
             self.pw_Edit.setEnabled(True)
