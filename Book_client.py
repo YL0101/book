@@ -45,7 +45,7 @@ class reg(QDialog):
         self.join_Btn.clicked.connect(self.join)
 
     def chack_id(self):
-        id=self.id_Edit.text()
+        id=self.id_Edit.text()#텍스트창에 있는걸 id라는 변수에 집어넣는다
         sock.send(id.encode())
         ck = sock.read(BUF_SIZE)
         if ck == "!OK" :
@@ -68,10 +68,12 @@ class reg(QDialog):
     def chack_E_num(self):
         self.join_Btn.setEnabled(True)
     def join(self):
+        #텍스트창에 있는걸 변수에 집어넣는다
         id=self.id_Edit.text()
         pw=self.pw_Edit.text()
         name=self.name_Edit.text()
         email=self.email_Edit.text()
+        #msg에 합쳐서 전송한다
         msg=id+"/"+pw+"/"+name+"/"+email
         sock.send(msg.encode())
         print(msg)
