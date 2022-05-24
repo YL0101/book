@@ -21,6 +21,7 @@ class Login(QDialog):
         super().__init__()
         self.ui = uic.loadUi("Login.ui",self)
 
+        #버튼 누를시 작동되는것들
         self.join_Btn.clicked.connect(self.join)
         self.pw_Edit.returnPressed.connect(self.try_login)
     
@@ -29,8 +30,9 @@ class Login(QDialog):
 
     def join(self):
         sock.send("signup".encode())
-        chat_window2 = reg()
-        chat_window2.exec_()
+        #새로운 UI 열기
+        reg_window = reg()
+        reg_window.exec_()
 
 class reg(QDialog):
     def __init__(self):
@@ -38,13 +40,13 @@ class reg(QDialog):
         self.ui = uic.loadUi("register.ui", self)
 
         #버튼 이벤트들
-        self.id_Btn.clicked.connect(self.chack_id)
-        self.pw_Btn.clicked.connect(self.chack_pw)
-        self.email_Btn.clicked.connect(self.chack_email)
-        self.email_C_Btn.clicked.connect(self.chack_E_num)
+        self.id_Btn.clicked.connect(self.check_id)
+        self.pw_Btn.clicked.connect(self.check_pw)
+        self.email_Btn.clicked.connect(self.check_email)
+        self.email_C_Btn.clicked.connect(self.check_E_num)
         self.join_Btn.clicked.connect(self.join)
 
-    def chack_id(self):
+    def check_id(self):
         id=self.id_Edit.text()#텍스트창에 있는걸 id라는 변수에 집어넣는다
         sock.send(id.encode())
         ck = sock.read(BUF_SIZE)
@@ -53,7 +55,7 @@ class reg(QDialog):
             self.pw_Edit.setEnabled(True)
             self.repw_Edit.setEnabled(True)
             self.pw_Btn.setEnabled(True)
-    def chack_pw(self):
+    def check_pw(self):
         a=self.pw_Edit.text()
         b=self.repw_Edit.text()
         if a == b:
@@ -61,11 +63,11 @@ class reg(QDialog):
             self.name_Edit.setEnabled(True)
             self.email_Edit.setEnabled(True)
             self.email_Btn.setEnabled(True)
-    def chack_email(self):
+    def check_email(self):
         #이메일 체크
         self.emailnum_Edit.setEnabled(True)
         self.email_C_Btn.setEnabled(True)
-    def chack_E_num(self):
+    def check_E_num(self):
         self.join_Btn.setEnabled(True)
     def join(self):
         #텍스트창에 있는걸 변수에 집어넣는다
