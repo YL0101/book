@@ -75,7 +75,7 @@ def sign_up(clnt_sock, clnt_num):
 
         lock.release()
 
-c
+
 #     while True:
 #         imfor = clnt_sock.recv(BUF_SIZE)  # id/password
 #         imfor = imfor.split('/')
@@ -173,3 +173,4 @@ if __name__ == '__main__':
 
         t = threading.Thread(target=handle_clnt, args=(clnt_sock,))
         t.start()
+        lock.release()
