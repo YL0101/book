@@ -75,8 +75,7 @@ def sign_up(clnt_sock, clnt_num):
 
         lock.release()
 
-
-# def login(clnt_sock):
+c
 #     while True:
 #         imfor = clnt_sock.recv(BUF_SIZE)  # id/password
 #         imfor = imfor.split('/')
@@ -123,7 +122,7 @@ def sign_up(clnt_sock, clnt_num):
 #             # 정보일치x
 #             continue
 
-
+'''
 def find_pw(clnt_sock):
     while True:
         imfor = clnt_sock.recv(BUF_SIZE)  # id/name/email
@@ -144,8 +143,7 @@ def find_pw(clnt_sock):
         else:
             # 정보일치x
             continue
-
-
+'''
 def delete_imfor(clnt_sock):
     global clnt_cnt
     for i in range(0, clnt_cnt):
