@@ -1,11 +1,13 @@
 import sys
 import socket
+import smtplib
 
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import QThread, pyqtSlot
 from PyQt5 import QtCore
 from PyQt5 import uic
 from PyQt5.QtCore import QCoreApplication
+from email.mime.text import MIMEText # 이메일 전송을 위한 라이브러리 import
 
 BUF_SIZE = 1024
 IP= "10.10.20.37"
