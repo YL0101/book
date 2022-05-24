@@ -73,7 +73,7 @@ class reg(QDialog):
         name=self.name_Edit.text()
         email=self.email_Edit.text()
         msg=id+"/"+pw+"/"+name+"/"+email
-        #sock.send(msg.encode())
+        sock.send(msg.encode())
         print(msg)
         self.close()
 
