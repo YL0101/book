@@ -51,6 +51,9 @@ border:2px solid #5865f2;
    </property>
   </widget>
   <widget class="QLineEdit" name="pw_Edit">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>30</x>
@@ -69,6 +72,9 @@ background:#fff;
 QLineEdit:focus{
 border:2px solid #5865f2;
 }</string>
+   </property>
+   <property name="echoMode">
+    <enum>QLineEdit::Password</enum>
    </property>
   </widget>
   <widget class="QLabel" name="label">
@@ -104,6 +110,9 @@ border:2px solid #5865f2;
    </property>
   </widget>
   <widget class="QLineEdit" name="name_Edit">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>30</x>
@@ -125,6 +134,9 @@ border:2px solid #5865f2;
    </property>
   </widget>
   <widget class="QLineEdit" name="email_Edit">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>30</x>
@@ -162,6 +174,9 @@ border:2px solid #5865f2;
    </property>
   </widget>
   <widget class="QLineEdit" name="repw_Edit">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>30</x>
@@ -181,6 +196,9 @@ QLineEdit:focus{
 border:2px solid #5865f2;
 }</string>
    </property>
+   <property name="echoMode">
+    <enum>QLineEdit::Password</enum>
+   </property>
   </widget>
   <widget class="QLabel" name="label_5">
    <property name="geometry">
@@ -199,6 +217,9 @@ border:2px solid #5865f2;
    </property>
   </widget>
   <widget class="QPushButton" name="join_Btn">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>30</x>
@@ -225,13 +246,19 @@ QPushButton:hover{
    </property>
   </widget>
   <widget class="QPushButton" name="pw_Btn">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>240</x>
-     <y>110</y>
+     <y>170</y>
      <width>51</width>
      <height>31</height>
     </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::StrongFocus</enum>
    </property>
    <property name="styleSheet">
     <string notr="true">QPushButton{
@@ -277,6 +304,9 @@ QPushButton:hover{
    </property>
   </widget>
   <widget class="QPushButton" name="email_Btn">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>240</x>
@@ -319,6 +349,9 @@ QPushButton:hover{
    </property>
   </widget>
   <widget class="QLineEdit" name="emailnum_Edit">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>30</x>
@@ -339,7 +372,51 @@ border:2px solid #5865f2;
 }</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="email_C_Btn">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>350</y>
+     <width>51</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::StrongFocus</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+border-radius:15px;
+border:2px solid #6000e4;
+background-color:#6000e4;
+color:#fff;
+}
+
+QPushButton:hover{
+
+}
+</string>
+   </property>
+   <property name="text">
+    <string>확인</string>
+   </property>
+  </widget>
  </widget>
+ <tabstops>
+  <tabstop>id_Edit</tabstop>
+  <tabstop>id_Btn</tabstop>
+  <tabstop>pw_Edit</tabstop>
+  <tabstop>pw_Btn</tabstop>
+  <tabstop>repw_Edit</tabstop>
+  <tabstop>name_Edit</tabstop>
+  <tabstop>email_Edit</tabstop>
+  <tabstop>email_Btn</tabstop>
+  <tabstop>emailnum_Edit</tabstop>
+  <tabstop>join_Btn</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

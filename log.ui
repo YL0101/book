@@ -220,8 +220,19 @@ QLineEdit:focus{
 border:2px solid #5865f2;
 }</string>
    </property>
+   <property name="echoMode">
+    <enum>QLineEdit::Password</enum>
+   </property>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>id_Edit</tabstop>
+  <tabstop>id_Find</tabstop>
+  <tabstop>pw_Edit</tabstop>
+  <tabstop>pw_Find</tabstop>
+  <tabstop>login_Btn</tabstop>
+  <tabstop>join_Btn</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
