@@ -29,7 +29,7 @@ def handle_clnt(clnt_sock):
                 lock.release()
                 break
 
-            clnt_msg = clnt_msg.encode()  #decode?
+            clnt_msg = clnt_msg.decode()  
 
             if 'signup' in clnt_msg:
                 sign_up(clnt_sock)
@@ -50,7 +50,7 @@ def sign_up(clnt_sock):
                 break
         if check == 1:
             continue
-        clnt_sock.send('OK'.encode())
+        clnt_sock.send('!OK'.encode())
         user_data.append(imfor)
         print(user_data)
         imfor = clnt_sock.recv(BUF_SIZE) # password/name/email
@@ -61,6 +61,7 @@ def sign_up(clnt_sock):
         query = "INSERT INTO Users(id, password, name, email) VALUES(?, ?, ?, ?)" 
         c.executemany(query, user_data) # DB에 user_data 추가
         con.commit()
+        
 
 
 
@@ -118,8 +119,8 @@ def find_pw(clnt_sock):
         row = c.fetchone()
         user_name = imfor[1]
         user_email = imfor[2]
-        if imfor[1] == user_name:
-            if imfor[2] == user_email:
+        if row[1] == user_name:
+            if row[2] == user_email:
                 #password 보내기
                 #clnt_sock.send(user_email.encode())
                 break
