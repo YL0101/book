@@ -8,7 +8,7 @@ from PyQt5 import uic
 from PyQt5.QtCore import QCoreApplication
 
 BUF_SIZE = 1024
-IP= "10.10.20.37"
+IP= "127.0.0.1"
 Port = 2090
 a="3"
 b="4"
@@ -28,7 +28,7 @@ class Login(QDialog):
         print("로그인시도")
 
     def join(self):
-        #sock.send("signup".encode())
+        sock.send("signup".encode())
         chat_window2 = reg()
         chat_window2.exec_()
 
